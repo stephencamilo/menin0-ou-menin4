@@ -1,0 +1,187 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    color: #fff;
+    background: #e53935;
+    background: linear-gradient(to bottom, #e53935, #e35d5b);
+    font-family: sans-serif;
+}
+
+h1 {
+    text-align: center;
+    margin: 0;
+}
+
+h2 {
+    text-align: center;
+    margin: 0 0 40px 0;
+}
+
+.button::before,
+.button::after {
+    position: absolute;
+    content: '';
+    transition: all .1s;
+}
+
+.button {
+    display: inline-block;
+    padding: 20px 40px;
+    color: white;
+    position: absolute;
+    bottom: 10%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    vertical-align: middle;
+    font-family: 'Rubik One', sans-serif;
+    text-decoration: none;
+    font-size: 60px;
+    transition: all .1s;
+    background-color: #3498db;
+}
+
+.button#tapa {
+    left: 25%
+}
+
+.button#reset {
+    left: 75%
+}
+
+.button::before {
+    bottom: -15px;
+    height: 15px;
+    width: 100%;
+    left: 8px;
+    -webkit-transform: skewX(45deg);
+    transform: skewX(45deg);
+    background-color: #196090;
+}
+
+.button::after {
+    right: -15px;
+    height: 100%;
+    width: 15px;
+    bottom: -8px;
+    -webkit-transform: skewY(45deg);
+    transform: skewY(45deg);
+    background-color: #124364;
+}
+
+.button:active {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.button:active::before {
+    bottom: -5px;
+    height: 5px;
+    left: 3px;
+}
+
+.button:active::after {
+    right: -5px;
+    width: 5px;
+    bottom: -3px;
+}
+
+.centered {
+    height: 110px;
+    margin: 40px auto;
+    position: relative;
+    margin-top: 37px;
+    overflow: hidden;
+    width: 90%;
+    text-align: center;
+}
+
+.group {
+    width: 100%;
+    height: 110px;
+    overflow: hidden;
+    position: relative;
+}
+
+label {
+    position: absolute;
+    top: 36px;
+    color: rgba(255, 255, 255, 0.5);
+    font: normal 36px 'Rubik One';
+    cursor: text;
+    transition: 0.25s ease;
+    width: 100%;
+    left: 0%;
+}
+
+input {
+    display: block;
+    width: 100%;
+    padding-top: 36px;
+    border: none;
+    border-radius: 0;
+    color: white;
+    background: transparent;
+    font-size: 36px;
+    transition: 0.3s ease;
+    text-align: center;
+    margin: 0 auto;
+}
+
+input:valid~label {
+    top: 0;
+    font: 700 22px 'Rubik One';
+    color: rgba(255, 255, 255, 0.5);
+}
+
+input:focus {
+    outline: none;
+}
+
+input:focus~label {
+    top: 0;
+    font: 700 22px 'Rubik One';
+    color: #fff;
+}
+
+input:focus~.bar:before {
+    transform: translateX(0);
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #333 inset;
+    -webkit-text-fill-color: white !important;
+}
+
+.bar {
+    background: rgba(255, 255, 255, 0.5);
+    content: "";
+    height: 3.6666666667px;
+    transition: 0.3s ease;
+    position: relative;
+}
+
+.bar:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 150%;
+    /* background: #fff; */
+    transform: translateX(-100%);
+}
+
+::selection {
+    background: rgba(33, 150, 243, 0.3);
+}
+
+ol.list li {
+    width: 1%;
+    margin: 0 auto
+}
+
+ol.list li:last-child {
+    font-weight: bold;
+    font-size: 22px
+}
