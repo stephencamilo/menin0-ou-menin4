@@ -7,102 +7,90 @@ document.addEventListener('DOMContentLoaded', function() {
         // document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
 
         const database = app.database();
-        tapa(database);
-        reset(database);
-        update_list(database);
+        voteMenino(database);
+        voteMenina(database);
+        update_quiz(database);
     } catch (e) {
         console.error(e);
         document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
     }
 });
 
-function getContentKeys(database) {
+function getContent(database) {
     return new Promise((result) => {
-        usersKeyArr = [];
-        var userCount = database.ref('users');
-        userCount.on('value', function(snapshot) {
+        votesArr = [];
+        var voteCount = database.ref('votes');
+        voteCount.on('value', function(snapshot) {
             var itemsProcessed = 0;
             snapshot.forEach(function(childSnapshot) {
                 var childKey = childSnapshot.key;
-                usersKeyArr.push(childKey);
+                var childData = childSnapshot.numChildren();
+                votesArr[childKey] = childData;
                 itemsProcessed++;
                 if (itemsProcessed === snapshot.numChildren()) {
-                    result(usersKeyArr);
+                    result(votesArr);
                 }
             });
         });
     });
 }
 
-function getContent(database) {
-    return new Promise((result) => {
-        usersArr = [];
-        var userCount = database.ref('users');
-        userCount.on('value', function(snapshot) {
-            var itemsProcessed = 0;
-            snapshot.forEach(function(childSnapshot) {
-                var childData = childSnapshot.val();
-                usersArr.push(childData);
-                itemsProcessed++;
-                if (itemsProcessed === snapshot.numChildren()) {
-                    result(usersArr);
-                }
-            });
-        });
-    });
-}
-
-function tapa(database) {
-    let tapa = document.querySelector("#tapa");
-    tapa.onclick = (e) => {
+function voteMenino(database) {
+    let voteMenino = document.querySelector("#voteMenino");
+    voteMenino.onclick = (e) => {
         e.preventDefault();
-        let name = document.querySelector("#name");
-        if (name.value) {
-            database.ref('users').push({
-                username: name.value,
-                time: firebase.database.ServerValue.TIMESTAMP
-            });
-        }
-        update_list(database);
+        database.ref('votes/menino').push({
+            time: firebase.database.ServerValue.TIMESTAMP
+        });
+        update_quiz(database);
     };
 
 }
 
-function reset(database) {
-    let reset = document.querySelector("#reset");
-    reset.onclick = (e) => {
+function voteMenina(database) {
+    let voteMenina = document.querySelector("#voteMenina");
+    voteMenina.onclick = (e) => {
         e.preventDefault();
-        getContentKeys(database).then((users) => {
-            var list = document.querySelector(".list");
-            list.innerHTML = '';
-            users.forEach((userKey) => {
-                database.ref('users/' + userKey).remove();
-            });
+        database.ref('votes/menina').push({
+            time: firebase.database.ServerValue.TIMESTAMP
         });
+        update_quiz(database);
     };
-
 }
 
-function update_list(database) {
+function update_quiz(database) {
     let new_order = new Promise((result) => {
-        var user_order = [];
-        getContent(database).then((users) => {
-            let itemsGone = 0;
-            var list = document.querySelector(".list");
-            list.innerHTML = '';
-            users.forEach((user) => {
-                user_order.push(user.username);
-                var li = document.createElement("li");
-                li.appendChild(document.createTextNode(user.username));
-                list.appendChild(li);
-                itemsGone++;
-                if (itemsGone === users.length) {
-                    result(user_order);
-                }
-            });
+        getContent(database).then((votes) => {
+            let total_votes = votes.menina + votes.menino;
+            let folga = 0;
+            let percent_votes_menino = (votes.menino / (total_votes / 100)) - folga;
+            let percent_votes_menina = (votes.menina / (total_votes / 100)) - folga;
+            document.getElementById("bar-menino").style.width = percent_votes_menino + '%';
+            document.getElementById("bar-menina").style.width = percent_votes_menina + '%';
+            let bar_menino_votos = document.querySelector("#bar-menino .votos");
+            var bar_menino_votos_text = document.createTextNode(votes.menino);
+            bar_menino_votos.appendChild(bar_menino_votos_text);
+
+            let bar_menino_porcento = document.querySelector("#bar-menino .porcento");
+            let bar_menino_porcento_text = document.createTextNode(parseInt(percent_votes_menino));
+            bar_menino_porcento.appendChild(bar_menino_porcento_text);
+
+            let bar_menina_votos = document.querySelector("#bar-menina .votos");
+            var bar_menina_votos_text = document.createTextNode(votes.menina);
+            bar_menina_votos.appendChild(bar_menina_votos_text);
+
+            let bar_menina_porcento = document.querySelector("#bar-menina .porcento");
+            let bar_menina_porcento_text = document.createTextNode(parseInt(percent_votes_menina));
+            bar_menina_porcento.appendChild(bar_menina_porcento_text);
+
+
         });
     });
     new_order.then((user) => {
         console.log(user);
     });
+}
+
+function var_dump(val) {
+    console.log(val);
 }

@@ -23,38 +23,47 @@
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#e53935" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script defer src="/__/firebase/7.6.0/firebase-app.js"></script>
-    <script defer src="/__/firebase/7.6.0/firebase-auth.js"></script>
-    <script defer src="/__/firebase/7.6.0/firebase-database.js"></script>
-    <script defer src="/__/firebase/7.6.0/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/7.6.0/firebase-storage.js"></script>
-    <script defer src="/__/firebase/init.js"></script>
+    <script defer src="/__/firebase/7.6.0/firebase-app.js">
+    </script>
+    <script defer src="/__/firebase/7.6.0/firebase-auth.js">
+    </script>
+    <script defer src="/__/firebase/7.6.0/firebase-database.js">
+    </script>
+    <script defer src="/__/firebase/7.6.0/firebase-messaging.js">
+    </script>
+    <script defer src="/__/firebase/7.6.0/firebase-storage.js">
+    </script>
+    <script defer src="/__/firebase/init.js">
+    </script>
     <title>MDP</title>
 </head>
 
 <body>
-    <div id="load"></div>
+    <div id="load">
+
+    </div>
     <div class="container">
         <div class="row">
             <div class="col d-flex justify-content-center mt-5 mb-5 pt-5 ml-1 mr-1">
+                <h1>É menino ou menina?</h1>
+                <span id="bar">
+                    <span id="bar-menino">
+                        <span class="votos"></span> votos<br/><span class="porcento"></span>%
+                </span>
+                <span id="bar-menina">
+                        <span class="votos"></span> votos<br/><span class="porcento"></span>%
+                </span>
+                </span>
 
-                <div class="centered">
-                    <div class="group">
-                        <input type="text" id="name" required="required" />
-                        <label for="name">Nome</label>
-                        <div class="bar"></div>
-                    </div>
-                </div>
             </div>
         </div>
-        <ol class="list">
-        </ol>
-        <span class="button text-center mt-5" id="tapa">TAPA</span>
-        <span class="button text-center mt-5" id="reset">RESET</span>
+        <span class="button text-center mt-5" id="voteMenino">Menino</span>
+        <span class="button text-center mt-5" id="voteMenina">Menina</span>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="assets/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
+    </script>
+    <script src="assets/js/script.js">
+    </script>
 </body>
 
 </html>

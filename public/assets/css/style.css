@@ -3,16 +3,18 @@ html {
     margin: 0;
     padding: 0;
     height: 100%;
-    width: 100%;
-    color: #fff;
-    background: #e53935;
-    background: linear-gradient(to bottom, #e53935, #e35d5b);
+    width: 100vw;
+    color: #292929;
+    background: #cccccc;
+    background: linear-gradient(to bottom, #d9eadd, #fbf6e6);
     font-family: sans-serif;
+    overflow: hidden;
 }
 
 h1 {
     text-align: center;
     margin: 0;
+    margin-top: 50px
 }
 
 h2 {
@@ -29,7 +31,7 @@ h2 {
 
 .button {
     display: inline-block;
-    padding: 20px 40px;
+    padding: 20px 1vw;
     color: white;
     position: absolute;
     bottom: 10%;
@@ -38,16 +40,31 @@ h2 {
     vertical-align: middle;
     font-family: 'Rubik One', sans-serif;
     text-decoration: none;
-    font-size: 60px;
+    font-size: 6vw;
     transition: all .1s;
     background-color: #3498db;
+    max-width: 33vw;
+    width: 28vw;
+    text-align: center;
 }
 
-.button#tapa {
+#voteMenina {
+    background-color: #db3481;
+}
+
+#voteMenina::before {
+    background-color: #901950;
+}
+
+#voteMenina::after {
+    background-color: #641234;
+}
+
+.button#voteMenino {
     left: 25%
 }
 
-.button#reset {
+.button#voteMenina {
     left: 75%
 }
 
@@ -88,100 +105,27 @@ h2 {
     bottom: -3px;
 }
 
-.centered {
-    height: 110px;
-    margin: 40px auto;
+span#bar>span {
+    background-color: #fff;
+    height: auto;
     position: relative;
-    margin-top: 37px;
-    overflow: hidden;
-    width: 90%;
+    display: inline-block;
+    float: left;
+    padding: 12px 0;
+    margin: 0;
     text-align: center;
 }
 
-.group {
-    width: 100%;
-    height: 110px;
-    overflow: hidden;
+span#bar {
+    top: 22vh;
     position: relative;
-}
-
-label {
-    position: absolute;
-    top: 36px;
-    color: rgba(255, 255, 255, 0.5);
-    font: normal 36px 'Rubik One';
-    cursor: text;
-    transition: 0.25s ease;
-    width: 100%;
-    left: 0%;
-}
-
-input {
     display: block;
-    width: 100%;
-    padding-top: 36px;
-    border: none;
-    border-radius: 0;
-    color: white;
-    background: transparent;
-    font-size: 36px;
-    transition: 0.3s ease;
-    text-align: center;
-    margin: 0 auto;
 }
 
-input:valid~label {
-    top: 0;
-    font: 700 22px 'Rubik One';
-    color: rgba(255, 255, 255, 0.5);
+span#bar span#bar-menino {
+    background-color: #8ecaff;
 }
 
-input:focus {
-    outline: none;
-}
-
-input:focus~label {
-    top: 0;
-    font: 700 22px 'Rubik One';
-    color: #fff;
-}
-
-input:focus~.bar:before {
-    transform: translateX(0);
-}
-
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px #333 inset;
-    -webkit-text-fill-color: white !important;
-}
-
-.bar {
-    background: rgba(255, 255, 255, 0.5);
-    content: "";
-    height: 3.6666666667px;
-    transition: 0.3s ease;
-    position: relative;
-}
-
-.bar:before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 150%;
-    /* background: #fff; */
-    transform: translateX(-100%);
-}
-
-::selection {
-    background: rgba(33, 150, 243, 0.3);
-}
-
-ol.list li {
-    width: 1%;
-    margin: 0 auto
-}
-
-ol.list li:last-child {
-    font-weight: bold;
-    font-size: 22px
+span#bar span#bar-menina {
+    background-color: #ff8ea2;
 }
