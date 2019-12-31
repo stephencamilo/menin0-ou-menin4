@@ -67,21 +67,12 @@ function update_quiz(database) {
             let percent_votes_menina = (votes.menina / (total_votes / 100)) - folga;
             document.getElementById("bar-menino").style.width = percent_votes_menino + '%';
             document.getElementById("bar-menina").style.width = percent_votes_menina + '%';
-            let bar_menino_votos = document.querySelector("#bar-menino .votos");
-            var bar_menino_votos_text = document.createTextNode(votes.menino);
-            bar_menino_votos.appendChild(bar_menino_votos_text);
+            var clear_text = document.createTextNode(votes.menino);
 
-            let bar_menino_porcento = document.querySelector("#bar-menino .porcento");
-            let bar_menino_porcento_text = document.createTextNode(parseInt(percent_votes_menino));
-            bar_menino_porcento.appendChild(bar_menino_porcento_text);
-
-            let bar_menina_votos = document.querySelector("#bar-menina .votos");
-            var bar_menina_votos_text = document.createTextNode(votes.menina);
-            bar_menina_votos.appendChild(bar_menina_votos_text);
-
-            let bar_menina_porcento = document.querySelector("#bar-menina .porcento");
-            let bar_menina_porcento_text = document.createTextNode(parseInt(percent_votes_menina));
-            bar_menina_porcento.appendChild(bar_menina_porcento_text);
+            document.querySelector("#bar-menino .votos").textContent = votes.menino;
+            document.querySelector("#bar-menino .porcento").textContent = parseInt(percent_votes_menino);
+            document.querySelector("#bar-menina .votos").textContent = votes.menina;
+            document.querySelector("#bar-menina .porcento").textContent = parseInt(percent_votes_menina);
 
 
         });
