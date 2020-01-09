@@ -30,7 +30,7 @@ h2 {
 }
 
 .button {
-    display: inline-block;
+    display: none;
     padding: 20px 1vw;
     color: white;
     position: absolute;
@@ -46,6 +46,23 @@ h2 {
     max-width: 33vw;
     width: 28vw;
     text-align: center;
+    cursor: pointer;
+}
+
+#votar {
+    display: block;
+    background-color: #daa100;
+    left: 50%;
+    text-shadow: 1px 1px 3px #007;
+    bottom: 40%;
+}
+
+#votar::before {
+    background-color: #906b19;
+}
+
+#votar::after {
+    background-color: #644712;
 }
 
 #voteMenina {
@@ -114,12 +131,13 @@ span#bar>span {
     padding: 12px 0;
     margin: 0;
     text-align: center;
+    width: 50%;
 }
 
 span#bar {
     top: 22vh;
     position: relative;
-    display: block;
+    display: none;
 }
 
 span#bar span#bar-menino {
@@ -128,4 +146,21 @@ span#bar span#bar-menino {
 
 span#bar span#bar-menina {
     background-color: #ff8ea2;
+}
+
+a,
+a:hover {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #000000;
+    width: 90vw;
+    position: relative;
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 10px 0;
+    margin: 10px auto;
+    border-radius: 5px;
+    border: solid 2px #00000036;
+    cursor: pointer;
 }

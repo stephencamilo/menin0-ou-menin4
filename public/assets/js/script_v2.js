@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     try {
         const app = firebase.app();
         const features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
@@ -7,8 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
         logar_votar(database);
         logout(database);
         authListener(database);
-        update_quiz(database);
-
     } catch (e) {
         console.error(e);
         document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
@@ -16,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function authListener(database) {
-    firebase.auth().onAuthStateChanged(function (user) {
+    firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             // User is signed in.
             display_inline_block('#voteMenino');
@@ -46,10 +44,10 @@ function logar_votar(database) {
         var provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('openid');
         firebase.auth().languageCode = 'pt';
-        firebase.auth().signInWithPopup(provider).then(function (result) {
+        firebase.auth().signInWithPopup(provider).then(function(result) {
             vote(database, result.user, 'menino', '#voteMenino');
             vote(database, result.user, 'menina', '#voteMenina');
-        }).catch(function (error) {
+        }).catch(function(error) {
             var errorCode = error.code;
             console.log(errorCode);
             var errorMessage = error.message;
@@ -63,12 +61,12 @@ function logout(database) {
     let element = document.querySelector('#logout');
     element.onclick = (e) => {
         e.preventDefault();
-        firebase.auth().signOut().then(function () {
+        firebase.auth().signOut().then(function() {
             // Sign-out successful.
             console.log('Sign-out successful');
             authListener(database);
 
-        }).catch(function (error) {
+        }).catch(function(error) {
             // An error happened.
             console.log(error);
         });
@@ -78,10 +76,10 @@ function logout(database) {
 function getContent(database) {
     return new Promise((result) => {
         votesArr = [];
-        var voteCount = database.ref('votes');
-        voteCount.on('value', function (snapshot) {
+        var voteCount = database.ref('votes_public');
+        voteCount.on('value', function(snapshot) {
             var itemsProcessed = 0;
-            snapshot.forEach(function (childSnapshot) {
+            snapshot.forEach(function(childSnapshot) {
                 var childKey = childSnapshot.key;
                 var childData = childSnapshot.numChildren();
 
@@ -114,12 +112,21 @@ function vote(database, user, gender, selector) {
     let element = document.querySelector(selector);
     element.onclick = (e) => {
         e.preventDefault();
-        database.ref('votes/' + gender).push({
-            voto: gender,
+        var voteData = {
+            time_voted: firebase.database.ServerValue.TIMESTAMP
+          };
+          var userData = {
             user_mail: user.email,
             user_displayName: user.displayName,
-            time: firebase.database.ServerValue.TIMESTAMP
-        });
+            time_created: firebase.database.ServerValue.TIMESTAMP
+          };
+        var newVoteKey = firebase.database().ref().child('votes_public/' + gender).push().key;
+        var updates = {};
+        updates['/votes/' + newVoteKey] = voteData;
+        updates['/user/' + user.uid] = userData;
+        updates['/user-votes/' + user.uid] = newVoteKey;
+        firebase.database().ref().update(updates);
+        update_quiz(database);
         let bar = document.querySelector('#bar');
         bar.setAttribute("style", "display:block;");
     };

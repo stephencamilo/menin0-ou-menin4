@@ -15,13 +15,12 @@
     <link rel="icon" type="image/png" sizes="192x192" href="assets/ico/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/ico/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="assets/ico/favicon-96x96.png">
-    <link rel="manifest" href="assets/ico/manifest.json">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <meta charset="utf-8">
     <meta name="description" content="É menino ou menina?" />
-    <meta name="msapplication-TileColor" content="#e53935">
+    <meta name="msapplication-TileColor" content="#d9eadd">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-    <meta name="theme-color" content="#e53935" />
+    <meta name="theme-color" content="#d9eadd" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script defer src="/__/firebase/7.6.0/firebase-app.js">
     </script>
@@ -42,27 +41,29 @@
     <div id="load">
 
     </div>
+    <a href="#" id="logout">logout</a>
     <div class="container">
         <div class="row">
             <div class="col d-flex justify-content-center mt-5 mb-5 pt-5 ml-1 mr-1">
                 <h1>É menino ou menina?</h1>
                 <span id="bar">
                     <span id="bar-menino">
-                        <span class="votos"></span> votos<br/><span class="porcento"></span>%
+                        <span class="votos">?</span> votos<br /><span class="porcento">?</span>%
                 </span>
                 <span id="bar-menina">
-                        <span class="votos"></span> votos<br/><span class="porcento"></span>%
+                        <span class="votos">?</span> votos<br /><span class="porcento">?</span>%
                 </span>
                 </span>
 
             </div>
         </div>
+        <span class="button text-center mt-5" id="votar">Votar</span>
         <span class="button text-center mt-5" id="voteMenino">Menino</span>
         <span class="button text-center mt-5" id="voteMenina">Menina</span>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
     </script>
-    <script src="assets/js/script.js">
+    <script src="assets/js/script.js?v=0.0.3">
     </script>
 </body>
 
