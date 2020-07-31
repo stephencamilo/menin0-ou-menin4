@@ -64,7 +64,7 @@
     "delayed-stream": "^1.0.0",
     "defaults": "^1.0.3",
     "depd": "^1.1.2",
-    "dot-prop": "^4.2.0",
+    "dot-prop": "^5.2.0",
     "crypto-random-string": "^1.0.0",
     "ee-first": "^1.1.1",
     "duplexer3": "^0.1.4",
